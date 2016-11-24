@@ -15,29 +15,26 @@ public class Route {
     private String last_stop;
     private String journey_time;
     private int num_stops;
-    
+
 //    @OneToOne(mappedBy="rroute")
 //    private Timetable timetable;
-    
     @OneToMany(mappedBy = "rroute", cascade = CascadeType.PERSIST)
     private List<Timetable> tlist = new ArrayList<>();
-    
-    @OneToOne(mappedBy="route2")
+
+    @OneToOne(mappedBy = "route2")
     private Fare fare;
-    
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(name="BusRoute",
-    joinColumns = @JoinColumn(name="RID"),
-    inverseJoinColumns=@JoinColumn(name="BID"))
-    
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "BusRoute",
+            joinColumns = @JoinColumn(name = "RID"),
+            inverseJoinColumns = @JoinColumn(name = "BID"))
+
     private List<Bus> blist = new ArrayList<>();
 
-    public Route() 
-    {
+    public Route() {
     }
 
-    public Route(int route_num, String first_stop, String last_stop, String journey_time, int numStops) 
-    {
+    public Route(int route_num, String first_stop, String last_stop, String journey_time, int numStops) {
         this.route_num = route_num;
         this.first_stop = first_stop;
         this.last_stop = last_stop;
@@ -45,51 +42,43 @@ public class Route {
         this.num_stops = numStops;
     }
 
-    public int getRoute_num() 
-    {
+    public int getRoute_num() {
         return route_num;
     }
 
-    public String getFirst_stop()
-    {
+    public String getFirst_stop() {
         return first_stop;
     }
 
-    public String getLast_stop()
-    {
+    public String getLast_stop() {
         return last_stop;
     }
 
-    public String getJourney_time() 
-    {
+    public String getJourney_time() {
         return journey_time;
     }
 
-    public int getNumStops()
-    {
+    public int getNumStops() {
         return num_stops;
     }
-    
-    public List<Bus> getBlist() 
-    {
+
+    public List<Bus> getBlist() {
         return blist;
     }
 
     public void setFare(Fare fare) {
         this.fare = fare;
     }
-    
-    public void setJourney_time(String newJtime) 
-    {
+
+    public void setJourney_time(String newJtime) {
         this.journey_time = newJtime;
     }
 
-    public void setBlist(List<Bus> blist) 
-    {
+    public void setBlist(List<Bus> blist) {
         this.blist = blist;
     }
-    
-      public List<Timetable> getTlist() {
+
+    public List<Timetable> getTlist() {
         return tlist;
     }
 
@@ -97,8 +86,7 @@ public class Route {
         this.tlist = tlist;
     }
 
-    public void addTimetable(Timetable t)
-    {
+    public void addTimetable(Timetable t) {
         tlist.add(t);
         t.setRoute(this);
     }
@@ -111,24 +99,26 @@ public class Route {
 //    {
 //        this.timetable = timetable;
 //    }
+    public void printBuses() {
+        String r = "";
+        for (int i = 0; i < blist.size(); i++) {
+
+            System.out.println(blist.get(i).toString());
+
+        }
+
+    }
+
     @Override
     public String toString() {
         String r = "";
-        r += "Route details for Route " + "Number: " + route_num + "\n"+ 
-                "First stop: " + first_stop + "\n" +
-                "Last stop : " + last_stop + "\n" +
-                "Journey time: " + journey_time + "\n" +
-                "Number of stops: " + num_stops + "\n" +
-                "Buses on route: ";
+        r += "Route details for Route " + "Number: " + route_num + "\n"
+                + "First stop: " + first_stop + "\n"
+                + "Last stop : " + last_stop + "\n"
+                + "Journey time: " + journey_time + "\n"
+                + "Number of stops: " + num_stops + "\n";
 
-        for (int i = 0; i < blist.size(); i++) {
-            r += "\n" + blist.get(i) + "\n";
-        }
-        
-        for (int i = 0; i < tlist.size(); i++) {
-            r += "\n" + tlist.get(i) + "\n";
-        }
-        
-        return r + "\n"  + fare;
+        return r;
     }
+
 }

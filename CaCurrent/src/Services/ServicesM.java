@@ -14,6 +14,58 @@ public class ServicesM {
 
 ///////////////////////////QUERIES//////////////////////////////////////////////
 ///START OF USER MENU QUERIES///
+    /*User Menu Option 1*/
+    public void printAllRouteDetails() {
+
+        Query query = em.createQuery("Select r From Route r");
+        List<Route> list = query.getResultList();
+
+        for (Route e : list) {
+            System.out.println(e);
+        }
+    }
+
+    /*User Menu Option 2*/
+    public void printARoutesDetails(int routeNum) {
+
+        Query query = em.createQuery("Select r From Route r Where r.route_num = " + routeNum);
+        List<Route> list = query.getResultList();
+
+        for (Route e : list) {
+            System.out.println(e);
+        }
+    }
+
+    /*User Menu Option 3*/
+    public void printTimetable(int routeNum) {
+
+        Query query = em.createQuery("Select t From Timetable t Where t.route = " + routeNum);
+        List<Timetable> list = query.getResultList();
+
+        for (Timetable t : list) {
+            System.out.println(t);
+        }
+    }
+
+    /*User Menu Option 4*/
+    public void printBusesOnRoute(int routeNum) {
+
+        Route r = em.find(Route.class, routeNum);
+        r.printBuses();
+    }
+
+    /*User Menu Option 5*/
+    public void printFares(int routeNum) {
+
+        Query query = em.createQuery("Select f From Fare f Where f.route = " + routeNum);
+        List<Fare> list = query.getResultList();
+
+        for (Fare f : list) {
+            System.out.println(f);
+        }
+    }
+//////END OF USER QUERIES///////
+
 //////START OF ROUTE METHODS//////
     public int findRouteID(String firstStop, String destination) {
 
@@ -46,8 +98,21 @@ public class ServicesM {
         }
         return found;
     }
-
-    /*Admin option 1*/
+    
+    public void addFareToRoute(int routeNumIn , Fare f ){
+    Route r = em.find(Route.class, routeNumIn);
+    r.setFare(f);
+    em.persist(r);
+    }
+    
+    public void addBusToRoute(int routeNumIn , Bus b ){
+    Route r = em.find(Route.class, routeNumIn);
+    b.addRoute(r);
+    em.persist(b);
+    }
+    
+    /*All Route options displayed after selecting admin menu option 1*/
+    /*Route option 1*/
     public void removeRoute(int id) {
 
         Route r = em.find(Route.class, id);
@@ -56,7 +121,7 @@ public class ServicesM {
         em.getTransaction().commit();
     }
 
-    /*Admin option 2*/
+    /*Route option 2*/
     public Route createRoute(int route_num, String first_stop, String last_stop, String journey_time, int numStops) {
 
         em.getTransaction().begin();
@@ -66,7 +131,7 @@ public class ServicesM {
         return r;
     }
 
-    /*Admin option 3*/
+    /*Route option 3*/
     public void updateRouteJourneyTime(int id, String newJourneyTime) {
         em.getTransaction().begin();
         Route r = em.find(Route.class, id);
@@ -75,6 +140,7 @@ public class ServicesM {
     }
 
     //////START OF TIMETABLE METHODS//////
+    
     public boolean findTimetable(int timetableNum) {
         boolean found = false;
 
@@ -90,7 +156,8 @@ public class ServicesM {
         return found;
     }
 
-    /*Admin option 4*/
+    /*All Timetable Options displayed after selecting admin menu option 2*/
+    /*Timetable option 1*/
     public void removeTimetable(int id) {
 
         Timetable t = em.find(Timetable.class, id);
@@ -99,17 +166,21 @@ public class ServicesM {
         em.getTransaction().commit();
     }
 
-    /*Admin option 5*/
+    /*Timetable option 2*/
     public Timetable createTimetable(int timetable_id, int route_num, String timetable_type, String first_journey, String last_journey, String frequency) {
 
         em.getTransaction().begin();
         Timetable t = new Timetable(timetable_id, route_num, timetable_type, first_journey, last_journey, frequency);
         em.persist(t);
+        
+        Route r = em.find(Route.class, route_num);
+        r.addTimetable(t);
+        
         em.getTransaction().commit();
         return t;
     }
 
-    /*Admin option 6*/
+    /*Timetable option 3*/
     public void updateTimetableFrequency(int id, String newFrequency) {
         em.getTransaction().begin();
         Timetable t = em.find(Timetable.class, id);
@@ -133,7 +204,8 @@ public class ServicesM {
         return found;
     }
 
-    /*Admin option 7*/
+    /*All Bus Options displayed after selecting admin menu option 3*/
+    /*Bus option 1*/
     public void removeBus(int id) {
 
         Bus b = em.find(Bus.class, id);
@@ -142,7 +214,7 @@ public class ServicesM {
         em.getTransaction().commit();
     }
 
-    /*Admin option 8*/
+    /*Bus option 2*/
     public Bus createBus(int bus_id, int capacity, String bus_type) {
 
         em.getTransaction().begin();
@@ -152,7 +224,7 @@ public class ServicesM {
         return b;
     }
 
-    /*Admin option 9*/
+    /*Bus option 3*/
     public void updateBusType(int id, String newType) {
         em.getTransaction().begin();
         Bus b = em.find(Bus.class, id);
@@ -176,8 +248,9 @@ public class ServicesM {
         }
         return found;
     }
-
-    /*Admin option 10*/
+    
+    /*All Fare options displayed after selecting admin menu option 1*/
+    /*Fare option 1*/
     public void removeFare(int id) {
 
         Fare f = em.find(Fare.class, id);
@@ -186,7 +259,7 @@ public class ServicesM {
         em.getTransaction().commit();
     }
 
-    /*Admin option 11*/
+    /*Fare option 2*/
     public Fare createFare(int route_num, double childFare, double studentFare, double adultFare, double oapFare) {
 
         em.getTransaction().begin();
@@ -196,7 +269,7 @@ public class ServicesM {
         return f;
     }
 
-    /*Admin option 12*/
+    /*Below 4 update's all used in Fare option 3*/
     public void updateChildFare(int id, double newFare) {
         em.getTransaction().begin();
         Fare f = em.find(Fare.class, id);
