@@ -32,7 +32,7 @@ Foreign Key (Route) References Route(route_num) On Delete Cascade
 );
 
 CREATE TABLE Fare(
-fare_id NUMBER NOT NULL
+fare_id NUMBER NOT NULL,
 route NUMBER NOT NULL,
 Child_Fare NUMBER,
 Student_Fare NUMBER,
@@ -49,4 +49,8 @@ PRIMARY KEY (BID,RID),
 FOREIGN KEY (RID) REFERENCES Route(Route_num) ON DELETE SET NULL,
 FOREIGN KEY (BID) REFERENCES Bus(Bus_id) ON DELETE SET NULL
 );
+
+DROP SEQUENCE fare_seq;
+
+create sequence fare_seq increment by 50 start with 50;
 

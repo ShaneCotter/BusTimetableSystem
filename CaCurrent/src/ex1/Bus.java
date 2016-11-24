@@ -60,8 +60,7 @@ public class Bus {
     public void setRlist(List<Route> rlist) {
         this.rlist = rlist;
     }
-    
-    
+
     public void addRoute(Route r2) {
         rlist.add(r2);
         r2.getBlist().add(this);
