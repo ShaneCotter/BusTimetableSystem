@@ -19,6 +19,7 @@ public class ServicesM {
 ///////////////////////////QUERIES//////////////////////////////////////////////
 ///START OF USER MENU QUERIES///
     /*User Menu Option 1*/
+ /*Also used to print all routes in Admin menu*/
     public void printAllRouteDetails() {
 
         Query query = em.createQuery("Select r From Route r");
@@ -26,6 +27,39 @@ public class ServicesM {
 
         for (Route e : list) {
             System.out.println(e);
+        }
+    }
+
+    /*Used to print all timetables in Admin menu*/
+    public void printAllTimetables() {
+
+        Query query = em.createQuery("Select t From Timetable t");
+        List<Timetable> list = query.getResultList();
+
+        for (Timetable t : list) {
+            System.out.println(t);
+        }
+    }
+
+    /*Used to print all buses in Admin menu*/
+    public void printAllBuses() {
+
+        Query query = em.createQuery("Select b From Bus b");
+        List<Bus> list = query.getResultList();
+
+        for (Bus b : list) {
+            System.out.println(b);
+        }
+    }
+
+    /*Used to print all fares in Admin menu*/
+    public void printAllFares() {
+
+        Query query = em.createQuery("Select f From Fare f");
+        List<Fare> list = query.getResultList();
+
+        for (Fare f : list) {
+            System.out.println(f);
         }
     }
 

@@ -96,7 +96,7 @@ public class Fare {
 
     @Override
     public String toString() {
-        return "\n Ticket prices for route: " + route + "\n"
+        return "\n" + "Fare id:" + fare_id + "\n" + "Ticket prices for route: " + route + "\n"
                 + "Child ticket : €" + child_Fare + "\n"
                 + "Student ticket: €" + student_Fare + "\n"
                 + "Adult ticket: €" + adult_Fare + "\n"

@@ -148,8 +148,9 @@ public class TestBusSystem {
                     System.out.println("Press 1 to remove a route");
                     System.out.println("Press 2 to add a route");
                     System.out.println("Press 3 to update a route's journey time");
-                    System.out.println("Press 4 to return to last menu");
-                    System.out.println("Press 5 to exit");
+                    System.out.println("Press 4 to view all routes");
+                    System.out.println("Press 5 to return to last menu");
+                    System.out.println("Press 6 to exit");
                     System.out.print(": ");
                     int routeOption = in.nextInt();
 
@@ -205,10 +206,13 @@ public class TestBusSystem {
                             }
                             break;
                         case 4:
+                            jpas.printAllRouteDetails();
+                            break;
+                        case 5:
                             /*Back to Previous Menu (Admin Menu)*/
                             adminMenu();
                             break;
-                        case 5:
+                        case 6:
                             /*End programme - from Route Options*/
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
@@ -231,8 +235,9 @@ public class TestBusSystem {
                     System.out.println("Press 1 to remove a timetable");
                     System.out.println("Press 2 to add a timetable");
                     System.out.println("Press 3 to update a timetable's frequency");
-                    System.out.println("Press 4 to return to last menu");
-                    System.out.println("Press 5 to exit");
+                    System.out.println("Press 4 to view all timetables");
+                    System.out.println("Press 5 to return to last menu");
+                    System.out.println("Press 6 to exit");
                     System.out.print(": ");
                     int timetableOption = in.nextInt();
 
@@ -308,10 +313,13 @@ public class TestBusSystem {
                             }
                             break;
                         case 4:
+                            jpas.printAllTimetables();
+                            break;
+                        case 5:
                             /*Back to Previous Menu (Admin Menu)*/
                             adminMenu();
                             break;
-                        case 5:
+                        case 6:
                             /*End programme - from Timetable Options*/
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
@@ -337,8 +345,9 @@ public class TestBusSystem {
                     System.out.println("Press 1 to remove a bus");
                     System.out.println("Press 2 to add a bus");
                     System.out.println("Press 3 to update a bus's type");
-                    System.out.println("Press 4 to return to last menu");
-                    System.out.println("Press 5 to exit");
+                    System.out.println("Press 4 to view all buses");
+                    System.out.println("Press 5 to return to last menu");
+                    System.out.println("Press 6 to exit");
                     System.out.print(": ");
                     int busOption = in.nextInt();
 
@@ -409,10 +418,13 @@ public class TestBusSystem {
                             break;
 
                         case 4:
+                            jpas.printAllBuses();
+                            break;
+                        case 5:
                             /*Back to Previous Menu (Admin Menu)*/
                             adminMenu();
                             break;
-                        case 5:
+                        case 6:
                             /*End programme - from Bus options Menu*/
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
@@ -435,8 +447,9 @@ public class TestBusSystem {
                     System.out.println("Press 1 to remove fares for a route");
                     System.out.println("Press 2 to add fares for a route");
                     System.out.println("Press 3 to update fares for a route");
-                    System.out.println("Press 4 to return to last menu");
-                    System.out.println("Press 5 to exit");
+                    System.out.println("Press 4 to view all fares");
+                    System.out.println("Press 5 to return to last menu");
+                    System.out.println("Press 6 to exit");
                     System.out.print(": ");
                     int fareOption = in.nextInt();
 
@@ -459,43 +472,43 @@ public class TestBusSystem {
                         case 2:
                             /*INSIDE THIS ADD FARE METHOD THERE IS A LOT OF CHECKING TO MAKE SURE THE USER DOESNT ENTER A SECOND FARE FOR A ROUTE
                             THIS IS BECAUSE INSIDE THIS METHOD THE FARE CREATED IS ADDED TO TO THE ROUTE SPECIFIED AND ROUTE AND FARE HAVE A ONE TO ONE RELATIONSHIP*/
-                            
-                            /*Add Fare*/
+
+ /*Add Fare*/
                             System.out.println("If the route you are adding fares to already has fares created , please delete the existing fares before creating new ones.");
                             System.out.println("Press 1 to continue and add a new fare");
                             System.out.println("Press any other number to go back to the admin menu and delete exisiting fares first");
+                            System.out.print(": ");
                             int addRouteChoice = in.nextInt();
-                            
-                            if(addRouteChoice == 1){
-                            System.out.println("Please enter the route number of the fares you wish to add: ");
-                            int route_numAdd = in.nextInt();
 
-                            /*Test to make sure route number entered matches an existing route*/
-                            while (!jpas.findRoute(route_numAdd)) {
-                                System.out.println("The route you have entered does not match an existing route");
+                            if (addRouteChoice == 1) {
+                                System.out.println("Please enter the route number of the fares you wish to add: ");
+                                int route_numAdd = in.nextInt();
 
-                                System.out.println("Please enter re-enter a route number that matches an existing route number");
-                                route_numAdd = in.nextInt();
-                            }
+                                /*Test to make sure route number entered matches an existing route*/
+                                while (!jpas.findRoute(route_numAdd)) {
+                                    System.out.println("The route you have entered does not match an existing route");
 
-                            System.out.println("Please enter the child fare for route " + route_numAdd + ": ");
-                            double childFare = in.nextDouble();
-                            System.out.println("Please enter the student fare for route " + route_numAdd + ": ");
-                            double studentFare = in.nextDouble();
-                            System.out.println("Please enter the adult fare for route " + route_numAdd + ": ");
-                            double adultFare = in.nextDouble();
-                            System.out.println("Please enter the oap fare for route " + route_numAdd + ": ");
-                            double oapFare = in.nextDouble();
+                                    System.out.println("Please enter re-enter a route number that matches an existing route number");
+                                    route_numAdd = in.nextInt();
+                                }
 
-                            Fare f = jpas.createFare(route_numAdd, childFare, studentFare, adultFare, oapFare);
+                                System.out.println("Please enter the child fare for route " + route_numAdd + ": ");
+                                double childFare = in.nextDouble();
+                                System.out.println("Please enter the student fare for route " + route_numAdd + ": ");
+                                double studentFare = in.nextDouble();
+                                System.out.println("Please enter the adult fare for route " + route_numAdd + ": ");
+                                double adultFare = in.nextDouble();
+                                System.out.println("Please enter the oap fare for route " + route_numAdd + ": ");
+                                double oapFare = in.nextDouble();
 
-                            /*addFareToRoute is called to set the fare create as the active fare on the route specified above*/
-                            jpas.addFareToRoute(route_numAdd, f);
+                                Fare f = jpas.createFare(route_numAdd, childFare, studentFare, adultFare, oapFare);
 
-                            System.out.println("\n" + "Your new fares have now been created");
-                            }
-                            else{
-                                
+                                /*addFareToRoute is called to set the fare create as the active fare on the route specified above*/
+                                jpas.addFareToRoute(route_numAdd, f);
+
+                                System.out.println("\n" + "Your new fares have now been created");
+                            } else {
+
                                 adminMenu();
                             }
                             break;
@@ -530,10 +543,13 @@ public class TestBusSystem {
                             }
                             break;
                         case 4:
+                            jpas.printAllFares();
+                            break;
+                        case 5:
                             /*Back to Previous Menu (Admin Menu)*/
                             adminMenu();
                             break;
-                        case 5:
+                        case 6:
                             /*End programme - from Fare Options*/
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);

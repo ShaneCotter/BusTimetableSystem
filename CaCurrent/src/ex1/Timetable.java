@@ -103,7 +103,7 @@ public class Timetable {
 
     @Override
     public String toString() {
-        return "\n" + timetable_type +" Timetable for Route number: " + route + "\n"
+        return "\n" + "Timetable id : " + timetable_id + "\n" + timetable_type +" Timetable for Route number: " + route + "\n"
                 +"First bus leaves at: " + first_journey + "\n"
                 +"Last bus leaves at: " + last_journey + "\n"
                 +"Bus Frequency: " + frequency + "\n";
