@@ -1,5 +1,9 @@
 package Services;
 
+/**
+ *
+ * @author Shane Cotter X00131736 & Matthew Cleary X00130277
+ */
 import javax.persistence.*;
 import ex1.*;
 

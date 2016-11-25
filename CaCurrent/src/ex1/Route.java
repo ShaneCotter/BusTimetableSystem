@@ -1,5 +1,9 @@
 package ex1;
 
+/**
+ *
+ * @author Shane Cotter X00131736 & Matthew Cleary X00130277
+ */
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;

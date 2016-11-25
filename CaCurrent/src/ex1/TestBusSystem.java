@@ -1,5 +1,9 @@
 package ex1;
 
+/**
+ *
+ * @author Shane Cotter X00131736 & Matthew Cleary X00130277
+ */
 import Services.ServicesM;
 import java.util.Scanner;
 
@@ -209,7 +213,7 @@ public class TestBusSystem {
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
                             break;
-                            
+
                         default:
                             /*Message to be displayed when invalid Route menu choice entered*/
                             System.out.println("Invalid option please try again");
@@ -312,7 +316,7 @@ public class TestBusSystem {
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
                             break;
-                         
+
                         default:
                             /*Message to be displayed when invalid Timetable menu option entered*/
                             System.out.println("Invalid option please try again");
@@ -413,7 +417,7 @@ public class TestBusSystem {
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
                             break;
-                            
+
                         default:
                             /*Message to be displayed when invalid Bus menu option entered*/
                             System.out.println("Invalid option please try again");
@@ -453,7 +457,16 @@ public class TestBusSystem {
                             }
                             break;
                         case 2:
+                            /*INSIDE THIS ADD FARE METHOD THERE IS A LOT OF CHECKING TO MAKE SURE THE USER DOESNT ENTER A SECOND FARE FOR A ROUTE
+                            THIS IS BECAUSE INSIDE THIS METHOD THE FARE CREATED IS ADDED TO TO THE ROUTE SPECIFIED AND ROUTE AND FARE HAVE A ONE TO ONE RELATIONSHIP*/
+                            
                             /*Add Fare*/
+                            System.out.println("If the route you are adding fares to already has fares created , please delete the existing fares before creating new ones.");
+                            System.out.println("Press 1 to continue and add a new fare");
+                            System.out.println("Press any other number to go back to the admin menu and delete exisiting fares first");
+                            int addRouteChoice = in.nextInt();
+                            
+                            if(addRouteChoice == 1){
                             System.out.println("Please enter the route number of the fares you wish to add: ");
                             int route_numAdd = in.nextInt();
 
@@ -480,6 +493,11 @@ public class TestBusSystem {
                             jpas.addFareToRoute(route_numAdd, f);
 
                             System.out.println("\n" + "Your new fares have now been created");
+                            }
+                            else{
+                                
+                                adminMenu();
+                            }
                             break;
                         case 3:
                             /*Update Fare*/
@@ -520,11 +538,11 @@ public class TestBusSystem {
                             System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                             System.exit(0);
                             break;
-                            
+
                         default:
-                        /*Message to be displayed when invalid Fare menu option entered*/
-                        System.out.println("Invalid option please try again");
-                        break;
+                            /*Message to be displayed when invalid Fare menu option entered*/
+                            System.out.println("Invalid option please try again");
+                            break;
                     }
                 }
                 break;
@@ -537,8 +555,8 @@ public class TestBusSystem {
                 System.out.println("\n" + "Thank you for using our bus timetable system" + "\n" + "Goodbye");
                 System.exit(0);
                 break;
-                
-            default :
+
+            default:
                 /*Message to be displayed when invalid Admin menu choice entered*/
                 System.out.println("Invalid option please try again.");
                 break;

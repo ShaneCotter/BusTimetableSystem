@@ -1,5 +1,9 @@
 package Services;
 
+/**
+ *
+ * @author Shane Cotter X00131736 & Matthew Cleary X00130277
+ */
 import ex1.Route;
 import ex1.Timetable;
 import ex1.Bus;
@@ -98,21 +102,21 @@ public class ServicesM {
         }
         return found;
     }
-    
-    public void addFareToRoute(int routeNumIn , Fare f ){
-    Route r = em.find(Route.class, routeNumIn);
-    r.setFare(f);
-    em.persist(r);
+
+    public void addFareToRoute(int routeNumIn, Fare f) {
+        Route r = em.find(Route.class, routeNumIn);
+        r.setFare(f);
+        em.persist(r);
     }
-    
-    public void addBusToRoute(int routeNumIn , Bus b ){
-    Route r = em.find(Route.class, routeNumIn);
-    b.addRoute(r);
-    em.persist(b);
+
+    public void addBusToRoute(int routeNumIn, Bus b) {
+        Route r = em.find(Route.class, routeNumIn);
+        b.addRoute(r);
+        em.persist(b);
     }
-    
+
     /*All Route options displayed after selecting admin menu option 1*/
-    /*Route option 1*/
+ /*Route option 1*/
     public void removeRoute(int id) {
 
         Route r = em.find(Route.class, id);
@@ -140,7 +144,6 @@ public class ServicesM {
     }
 
     //////START OF TIMETABLE METHODS//////
-    
     public boolean findTimetable(int timetableNum) {
         boolean found = false;
 
@@ -157,7 +160,7 @@ public class ServicesM {
     }
 
     /*All Timetable Options displayed after selecting admin menu option 2*/
-    /*Timetable option 1*/
+ /*Timetable option 1*/
     public void removeTimetable(int id) {
 
         Timetable t = em.find(Timetable.class, id);
@@ -172,10 +175,10 @@ public class ServicesM {
         em.getTransaction().begin();
         Timetable t = new Timetable(timetable_id, route_num, timetable_type, first_journey, last_journey, frequency);
         em.persist(t);
-        
+
         Route r = em.find(Route.class, route_num);
         r.addTimetable(t);
-        
+
         em.getTransaction().commit();
         return t;
     }
@@ -205,7 +208,7 @@ public class ServicesM {
     }
 
     /*All Bus Options displayed after selecting admin menu option 3*/
-    /*Bus option 1*/
+ /*Bus option 1*/
     public void removeBus(int id) {
 
         Bus b = em.find(Bus.class, id);
@@ -248,9 +251,9 @@ public class ServicesM {
         }
         return found;
     }
-    
+
     /*All Fare options displayed after selecting admin menu option 1*/
-    /*Fare option 1*/
+ /*Fare option 1*/
     public void removeFare(int id) {
 
         Fare f = em.find(Fare.class, id);
