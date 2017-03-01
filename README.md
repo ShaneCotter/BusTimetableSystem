@@ -4,5 +4,5 @@ The goal of this project was to create a CRUD application using Java Persistence
   
 
 # Team Members
-Shane Cotter 
-Matthew Cleary
+- Shane Cotter 
+- Matthew Cleary
